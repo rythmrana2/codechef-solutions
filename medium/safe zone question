@@ -1,0 +1,99 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    vector<pair<int,int>> tri(3);
+    for(int i=0;i<3;i++)
+    {
+        cin>>tri[i].first>>tri[i].second;
+    }
+    int q;
+    cin>>q;
+    vector<pair<int,int>> peep(q);
+   
+    int m1,m2,m3;
+     int y1,x1,y2,x2,y3,x3;
+    y1=tri[2].second;
+    x1=tri[2].first;
+    y2=tri[0].second;
+    x2=tri[0].first;
+    y3=tri[1].second;
+    x3=tri[1].first;
+    int a1,a2,a3;
+    if( (tri[0].first!=0&&tri[1].first!=0) || (tri[2].first!=0&&tri[1].first!=0) || (tri[0].first!=0&&tri[2].first!=0))
+    {
+        m1=(tri[1].second-tri[0].second)/(tri[1].first-tri[0].first);
+        m2=(tri[2].second-tri[1].second)/(tri[2].first-tri[1].first);
+        m3=(tri[2].second-tri[0].second)/(tri[2].first-tri[0].first);
+    
+     a1=(m1*(tri[0].first-x1)) -(tri[0].second-y1);
+     a2=(m2*(tri[1].first-x2)) -(tri[1].second-y2);
+     a3=(m3*(tri[2].first-x3)) -(tri[2].second-y3);
+    }
+    else if(tri[0].first==0 && tri[1].first==0)
+    {    m2=(tri[2].second-tri[1].second)/(tri[2].first-tri[1].first);
+         m3=(tri[2].second-tri[0].second)/(tri[2].first-tri[0].first);
+     a2=(m2*(tri[1].first-x2)) -(tri[1].second-y2);
+     a3=(m3*(tri[2].first-x3)) -(tri[2].second-y3);
+     a1=x1;
+    }
+    else if(tri[2].first==0 && tri[1].first==0)
+    {   m1=(tri[1].second-tri[0].second)/(tri[1].first-tri[0].first);
+         m3=(tri[2].second-tri[0].second)/(tri[2].first-tri[0].first);
+     a2=x2;
+     a3=(m3*(tri[2].first-x3)) -(tri[2].second-y3);
+     a1=(m1*(tri[0].first-x1)) -(tri[0].second-y1);
+    }
+    else if(tri[0].first==0 && tri[2].first==0)
+    {    m2=(tri[2].second-tri[1].second)/(tri[2].first-tri[1].first);
+           m1=(tri[1].second-tri[0].second)/(tri[1].first-tri[0].first);
+     a2=(m2*(tri[1].first-x2)) -(tri[1].second-y2);
+     a1=(m1*(tri[0].first-x1)) -(tri[0].second-y1);
+     a3=x3;
+     }
+    static int count;
+    int a4,a5,a6;
+    for(int i=0;i<q;i++)
+    {    cin>>peep[i].first>>peep[i].second;
+        y1=peep[i].second;
+        x1=peep[i].first;
+        y2=peep[i].second;
+        x2=peep[i].first;
+        y3=peep[i].second;
+        x3=peep[i].first;
+         if( (tri[0].first!=0&&tri[1].first!=0) || (tri[2].first!=0&&tri[1].first!=0) || (tri[0].first!=0&&tri[2].first!=0))
+         {
+             a4=(m1*(tri[0].first-x1)) -(tri[0].second-y1);
+             a5=(m2*(tri[1].first-x2)) -(tri[1].second-y2);
+             a6=(m3*(tri[2].first-x3)) -(tri[2].second-y3);
+         }
+         else if(tri[0].first==0 && tri[1].first==0)
+    {   
+        a5=(m2*(tri[1].first-x2)) -(tri[1].second-y2);
+        a6=(m3*(tri[2].first-x3)) -(tri[2].second-y3);
+        a4=x1;
+    }
+    else if(tri[2].first==0 && tri[1].first==0)
+    {  
+     a5=x2;
+     a6=(m3*(tri[2].first-x3)) -(tri[2].second-y3);
+     a4=(m1*(tri[0].first-x1)) -(tri[0].second-y1);
+    }
+    else if(tri[0].first==0 && tri[2].first==0)
+    {   
+     a5=(m2*(tri[1].first-x2)) -(tri[1].second-y2);
+     a4=(m1*(tri[0].first-x1)) -(tri[0].second-y1);
+     a6=x3;
+     }
+    if(( (a1 >= 0) ^ (a4 < 0) || a4==0)&&((a2 >= 0) ^ (a5 < 0) || a5==0)&&((a3 >= 0) ^ (a6 < 0)) || a6==0)
+        {
+            continue;
+        }
+        else{
+            count++;
+        }
+    }
+    cout<<count;
+    return 0;
+}
