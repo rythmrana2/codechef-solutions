@@ -1,3 +1,4 @@
+//question-you are given the coordinates of a triangle shaped safe zone adn the coordinates of people. tell how many are not in the safe zone.
 #include<bits/stdc++.h>
 using namespace std;
 
