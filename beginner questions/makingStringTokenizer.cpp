@@ -18,7 +18,7 @@ char* mystrtok(char * s,char* del)
     { if(count==strlen(del)-1)
         {
            output[i-count]='\0';
-           input=input+i+1;
+           input=input+i;
            return output;
         }
             output[i]=input[i];
@@ -28,6 +28,10 @@ char* mystrtok(char * s,char* del)
             count++;
             j++;
         }
+     else{
+         count=0;
+         j=0;
+     }
     }
     input=NULL;
     output[i]='\0';
